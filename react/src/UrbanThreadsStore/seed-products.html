@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload products to Firestore | Urban Threads</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="seed-products.js"></script>
+</head>
+<body>
+    <main class="auth-page">
+        <section class="auth-card">
+            <h1>Upload sample products</h1>
+            <p>
+                Run this <strong>once</strong> after creating Firestore.
+                Products go into the <code>products</code> collection.
+            </p>
+            <p id="seed-message" role="status"></p>
+            <button type="button" class="auth-button" id="seed-button">
+                Upload products to Firestore
+            </button>
+            <p style="margin-top: 1rem;">
+                <a href="shop.html">Go to shop</a>
+            </p>
+        </section>
+    </main>
+</body>
+</html>

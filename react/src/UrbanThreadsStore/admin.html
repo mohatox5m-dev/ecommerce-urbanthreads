@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Urban Threads</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="admin.js"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            URBAN<span>THREADS</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <span id="nav-user" class="nav-user"></span>
+            <a href="login.html" id="nav-login-link">Login</a>
+            <button type="button" id="nav-logout-btn" class="nav-logout" hidden>
+                Log out
+            </button>
+            <a href="admin.html" id="nav-admin-link">Admin</a>
+            <a href="cart.html" id="nav-cart-link" hidden>
+                Cart 🛒 (<span id="cart-count">0</span>)
+            </a>
+        </nav>
+    </header>
+
+    <main class="admin-page">
+        <section class="admin-heading">
+            <p class="eyebrow">STORE BACK OFFICE</p>
+            <h1>Add products here</h1>
+            <p class="admin-lead">
+                <strong>This page (<code>admin.html</code>) is where store admins create products.</strong>
+                The shop page only displays what is already in Firestore.
+            </p>
+            <p>
+                Fill in the form below → <strong>Save to Firestore</strong> →
+                open <a href="shop.html">shop.html</a> to see them.
+            </p>
+            <p id="admin-message" role="status"></p>
+        </section>
+
+        <form id="admin-form" class="admin-form">
+            <div class="form-field">
+                <label for="product-id">Product ID (optional)</label>
+                <input
+                    type="text"
+                    id="product-id"
+                    name="id"
+                    placeholder="hoodie-003 — leave blank to auto-generate"
+                    pattern="[a-zA-Z0-9_-]+"
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="product-name">Name</label>
+                <input type="text" id="product-name" name="name" required>
+            </div>
+
+            <div class="form-field">
+                <label for="product-price">Price</label>
+                <input
+                    type="number"
+                    id="product-price"
+                    name="price"
+                    step="0.01"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="product-category">Category</label>
+                <select id="product-category" name="category" required>
+                    <option value="">Choose…</option>
+                    <option value="Hoodies">Hoodies</option>
+                    <option value="T-shirts">T-shirts</option>
+                    <option value="Sneakers">Sneakers</option>
+                    <option value="Accessories">Accessories</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="product-description">Description</label>
+                <textarea
+                    id="product-description"
+                    name="description"
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-field">
+                <label for="product-imageURL">Image URL</label>
+                <input
+                    type="url"
+                    id="product-imageURL"
+                    name="imageURL"
+                    placeholder="https://example.com/hoodie.jpg"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="auth-button" id="admin-save-button">
+                Save to Firestore
+            </button>
+        </form>
+
+        <section class="admin-list" aria-labelledby="admin-list-title">
+            <h2 id="admin-list-title">Current products</h2>
+            <ul id="admin-product-list"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Urban Threads. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

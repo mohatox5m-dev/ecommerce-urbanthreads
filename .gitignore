@@ -1,0 +1,13 @@
+node_modules/
+react/node_modules/
+react/dist/
+tools/
+
+# Firebase keys — copy firebase-config.example.js to firebase-config.js locally
+react/src/UrbanThreadsStore/firebase-config.js
+
+.env
+.env.*
+*.log
+.DS_Store
+react/test-results/
