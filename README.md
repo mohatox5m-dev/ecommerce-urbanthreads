@@ -1,26 +1,46 @@
 # Urban Threads Store
 
-Beginner e-commerce assignment: HTML, CSS, JavaScript, Firebase Auth, and Firestore.
+Web store assignment: HTML, CSS, JavaScript, [Firebase](https://firebase.google.com/) Authentication, and Firestore.
 
-## App location
+Repository: [mohatox5m-dev/ecommerce-urbanthreads](https://github.com/mohatox5m-dev/ecommerce-urbanthreads)
 
-Open with **Live Server** (or any static server):
+## Quick start
 
-`react/src/UrbanThreadsStore/index.html`
+1. **Firebase config** (required on each machine):
 
-## Setup
+   ```text
+   react/src/UrbanThreadsStore/firebase-config.example.js
+   → copy to firebase-config.js → paste your keys from Firebase Console
+   ```
 
-1. Copy `react/src/UrbanThreadsStore/firebase-config.example.js` to `firebase-config.js` and paste your Firebase web config.
-2. Enable **Authentication (Email/Password)** and **Firestore** in the [Firebase Console](https://console.firebase.google.com/).
-3. Publish `react/src/UrbanThreadsStore/firestore.rules` under Firestore → Rules.
-4. See `react/src/UrbanThreadsStore/FIREBASE-AUTH-SETUP.md` for step-by-step instructions.
+2. **Firebase Console**
 
-## Pages
+   - Enable **Authentication → Email/Password**
+   - Create **Firestore Database**
+   - Copy `react/src/UrbanThreadsStore/firestore.rules` into **Firestore → Rules** → **Publish**
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Landing |
-| `shop.html` | Products from Firestore |
-| `login.html` | Sign up / log in |
-| `cart.html` | Cart (login required) |
-| `admin.html` | Add products |
+3. **Run the app**
+
+   - VS Code/Cursor: **Live Server** on folder  
+     `react/src/UrbanThreadsStore/`  
+   - Or: `npx --yes serve react/src/UrbanThreadsStore -p 3000`  
+   - Open `http://localhost:3000/index.html` (port may vary)
+
+4. **Typical flow**
+
+   - `admin.html` — add products (or `seed-products.html` once)
+   - `shop.html` — browse from Firestore
+   - `login.html` — create account / log in
+   - `cart.html` — cart (must be logged in)
+
+Full steps: `react/src/UrbanThreadsStore/FIREBASE-AUTH-SETUP.md` and `plan.md`.
+
+## Structure
+
+| Path | Role |
+|------|------|
+| `react/src/UrbanThreadsStore/*.html` | Pages |
+| `react/src/UrbanThreadsStore/*.js` | Logic (ES modules + Firebase CDN) |
+| `react/src/UrbanThreadsStore/firestore.rules` | Paste into Firebase Console |
+
+`firebase-config.js` is **not** in git (secrets). Use the example file locally.

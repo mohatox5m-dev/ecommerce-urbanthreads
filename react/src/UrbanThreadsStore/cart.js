@@ -5,7 +5,8 @@ import {
     setupNavbar,
     requireLogin,
     getUserCart,
-    saveUserCart
+    saveUserCart,
+    ensureUserDocument
 } from "./navbar-auth.js";
 import { initFirebase, getFirebaseDb } from "./firebase.js";
 
@@ -129,7 +130,7 @@ cartItemsContainer.addEventListener("click", async function(event) {
     const productId = button.dataset.productId;
     const action = button.dataset.action;
 
-    if (!Object.hasOwn(cart, productId)) {
+    if (!Object.prototype.hasOwnProperty.call(cart, productId)) {
         return;
     }
 
@@ -184,6 +185,7 @@ async function start() {
         return;
     }
 
+    await ensureUserDocument(user);
     await loadProducts();
     cart = await getUserCart(user.uid);
     renderCart();

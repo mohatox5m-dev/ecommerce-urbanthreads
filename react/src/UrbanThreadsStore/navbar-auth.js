@@ -23,7 +23,40 @@ export async function getUserCart(uid) {
 
 export async function saveUserCart(uid, cart) {
     const db = getFirebaseDb();
-    await setDoc(doc(db, "users", uid), { cart }, { merge: true });
+    const ref = doc(db, "users", uid);
+
+    await setDoc(
+        ref,
+        {
+            cart,
+            updatedAt: new Date().toISOString()
+        },
+        { merge: true }
+    );
+}
+
+/** Creates a Firestore profile when missing (e.g. Auth OK but first cart save). */
+export async function ensureUserDocument(user) {
+    if (!user) {
+        return;
+    }
+
+    const db = getFirebaseDb();
+    const ref = doc(db, "users", user.uid);
+    const snap = await getDoc(ref);
+
+    if (snap.exists()) {
+        return;
+    }
+
+    await setDoc(ref, {
+        email: user.email || "",
+        displayName: user.displayName || "",
+        role: "customer",
+        isAdmin: false,
+        cart: {},
+        createdAt: new Date().toISOString()
+    });
 }
 
 async function updateCartCount(uid) {

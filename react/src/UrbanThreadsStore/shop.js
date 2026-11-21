@@ -6,7 +6,8 @@ import { initFirebase, getFirebaseAuth, getFirebaseDb } from "./firebase.js";
 import {
     setupNavbar,
     getUserCart,
-    saveUserCart
+    saveUserCart,
+    ensureUserDocument
 } from "./navbar-auth.js";
 
 setupNavbar();
@@ -148,6 +149,8 @@ productGrid.addEventListener("click", async function(event) {
         }, 1200);
         return;
     }
+
+    await ensureUserDocument(currentUser);
 
     const productId = button.dataset.productId;
     const cart = await getUserCart(currentUser.uid);

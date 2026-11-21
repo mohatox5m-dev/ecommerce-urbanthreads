@@ -12,7 +12,7 @@ import {
     getFirebaseDb
 } from "./firebase.js";
 import { isConfigReady } from "./firebase-config.js";
-import { setupNavbar } from "./navbar-auth.js";
+import { setupNavbar, ensureUserDocument } from "./navbar-auth.js";
 
 setupNavbar();
 
@@ -230,7 +230,18 @@ authForm.addEventListener("submit", async function(event) {
                 "success"
             );
         } else {
-            await signInWithEmailAndPassword(auth, email, password);
+            const result = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            try {
+                await ensureUserDocument(result.user);
+            } catch (profileError) {
+                console.warn("Login OK; Firestore profile:", profileError);
+            }
+
             showMessage("Welcome back!", "success");
         }
 

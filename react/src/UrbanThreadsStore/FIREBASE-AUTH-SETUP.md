@@ -142,10 +142,11 @@ If you see a **red** message, read it — it usually means keys, Live Server, or
 
 ---
 
-## Step 8 — Add products
+## Step 8 — Firestore rules and products
 
-1. Copy **`firestore.rules`** from this folder into Firebase Console → Firestore → **Rules** → **Publish**.
-2. Open **`admin.html`** (navbar → **Admin**) and save products — no special admin login is required for the product catalog.
+1. Copy **`firestore.rules`** from this folder into Firebase Console → Firestore → **Rules** → **Publish**.  
+   (Products are open for the class project; each user can read/write only their own `users/{uid}` doc when logged in.)
+2. Open **`admin.html`** (navbar → **Admin**) and save products, or **`seed-products.html`** once for samples.
 3. Open **`shop.html`** to see them.
 
 Fields saved to **`products`**: `name`, `price`, `category`, `description`, `imageURL`.

@@ -1,4 +1,9 @@
 {
+  "name": "urbanthreadsstore",
+  "private": true,
+  "scripts": {
+    "serve:store": "npx --yes serve react/src/UrbanThreadsStore -p 3000"
+  },
   "dependencies": {
     "firebase": "^13.1.0"
   }

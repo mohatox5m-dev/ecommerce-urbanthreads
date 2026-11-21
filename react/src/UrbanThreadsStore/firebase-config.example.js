@@ -11,3 +11,32 @@ export const firebaseConfig = {
     appId: "YOUR_APP_ID"
 };
 
+/**
+ * Returns true when every Firebase setting is filled in (not a placeholder).
+ */
+export function isConfigReady() {
+    const placeholders = [
+        "YOUR_API_KEY",
+        "YOUR_PROJECT_ID",
+        "YOUR_SENDER_ID",
+        "YOUR_APP_ID"
+    ];
+
+    function isFilled(value) {
+        if (!value || typeof value !== "string") {
+            return false;
+        }
+
+        const trimmed = value.trim();
+        return trimmed.length > 0 && !placeholders.includes(trimmed);
+    }
+
+    return (
+        isFilled(firebaseConfig.apiKey) &&
+        isFilled(firebaseConfig.authDomain) &&
+        isFilled(firebaseConfig.projectId) &&
+        isFilled(firebaseConfig.storageBucket) &&
+        isFilled(firebaseConfig.messagingSenderId) &&
+        isFilled(firebaseConfig.appId)
+    );
+}
